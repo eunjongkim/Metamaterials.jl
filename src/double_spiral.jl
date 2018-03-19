@@ -1,5 +1,4 @@
-
-
+# code for drawing double spiral coils
 """
     double_spiral(width, height, conductor_width,
         conductor_gap, clockwise, α0, in_length, out_length)
@@ -79,10 +78,13 @@ conductor width, and conductor gap. The keyword arguments `clockwise` and
 """
 function double_spiral!(c::Cell{T,S}, width, height, conductor_width,
     conductor_gap, meta::Meta=GDSMeta(0,0); clockwise=true, α0=π/2,
-    in_length=zero(T), out_length=zero(T)) where {T,S}
+    in_length=zero(T), out_length=zero(T)) where {T<:Coordinate,S<:GDSMeta}
 
     p = double_spiral(width, height, conductor_width,
         conductor_gap, clockwise, α0, in_length, out_length)
     render!(c, p, meta)
     return c
 end
+
+#TODO : add method for drawing dspiral with only total length, conductor_width,
+#       and conductor_gap specified
